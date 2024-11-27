@@ -26,5 +26,12 @@ pipeline {
                 }
             }
         }
+        stage('Nexus login') {
+            steps {
+                withCredentials([usernamePassword(credentialsId: 'nexus', usernameVariable: 'NEXUS_USER', passwordVariable: 'NEXUS_PASSWD')]) {
+                    sh 'docker login https://nexus.encaso.ru:8084 -u $NEXUS_USER -p $NEXUS_PASSWD'
+                }
+            }
+        }
     }
 }
