@@ -50,9 +50,13 @@ pipeline {
         }
         stage('Deploy app') {
             steps {
+                withCredentials([
+                    string(credentialsId: 'REMOTE_DOCKER_HOST', variable: 'REMOTE_DOCKER_HOST'),
+                    string(credentialsId: 'REMOTE_DOCKER_PORT', variable: 'REMOTE_DOCKER_PORT')
+                ])
                 sshagent(credentials: ['docker-server']) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no quehoras@62.176.16.167 -p 11704< ./docker/cmd.txt
+                        ssh -o StrictHostKeyChecking=no quehoras@$REMOTE_DOCKER_HOST -p $REMOTE_DOCKER_PORT < ./docker/cmd.txt
                     """
                 }
             }
