@@ -53,12 +53,14 @@ pipeline {
                 withCredentials([
                     string(credentialsId: 'REMOTE_DOCKER_HOST', variable: 'REMOTE_DOCKER_HOST'),
                     string(credentialsId: 'REMOTE_DOCKER_PORT', variable: 'REMOTE_DOCKER_PORT')
-                ])
-                sshagent(credentials: ['docker-server']) {
+                ]){
+                    sshagent(credentials: ['docker-server']) {
                     sh """
                         ssh -o StrictHostKeyChecking=no quehoras@$REMOTE_DOCKER_HOST -p $REMOTE_DOCKER_PORT < ./docker/cmd.txt
                     """
                 }
+                }
+                
             }
         }
     }
