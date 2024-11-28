@@ -48,5 +48,14 @@ pipeline {
                 sh "docker push ${env.REGISTRY}/${env.IMAGE_NAME}:latest"
             }
         }
+        stage('Deploy app') {
+            steps {
+                sshAgent(['docker-server']) {
+                    sh """
+                        ssh -o StrictHostKeyChecking=no quehoras@62.176.16.167 < ./docker/cmd.txt
+                    """
+                }
+            }
+        }
     }
 }
