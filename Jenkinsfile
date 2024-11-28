@@ -52,7 +52,7 @@ pipeline {
             steps {
                 sshagent(credentials: ['docker-server']) {
                     sh """
-                        ssh -o StrictHostKeyChecking=no quehoras@62.176.16.167 < ./docker/cmd.txt
+                        ssh -o StrictHostKeyChecking=no quehoras@62.176.16.167 -p 11704< ./docker/cmd.txt
                     """
                 }
             }
