@@ -1,2 +1,2 @@
-docker ps
+docker ps | grep -i nginx-dev | if [ $? -eq 0 ]; then docker rm nginx-dev; fi
 docker run -it -d --name nginx-dev -p 8060:80 nexus.encaso.ru:8084/nginx-dev:latest
