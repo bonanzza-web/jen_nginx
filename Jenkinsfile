@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        REGISTRY = "nexus.encaso.ru:8084"
+        REGISTRY = "nexus.encaso.ru"
         IMAGE_NAME = "nginx-dev"
     }
     stages {
