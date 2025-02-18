@@ -1,0 +1,11 @@
+---
+- name: Change permissions
+  hosts: all
+  become: true
+  remote_user: quehoras
+  
+  tasks:
+  - name: Set permissions
+    ansible.builtin.file:
+      path: /var/run/docker.sock
+      mode: 0777
