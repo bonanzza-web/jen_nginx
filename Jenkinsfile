@@ -48,6 +48,12 @@ pipeline {
                 sh "docker push ${env.REGISTRY}/${env.IMAGE_NAME}:latest"
             }
         }
+		stage('Set permissions docker.sock') {
+			steps {
+				sh "ansible-playbook -i ./ansible/inventory/hosts.txt ./ansible/playbook.yml"
+			}
+		}
+		
         stage('Deploy app') {
             steps {
                 withCredentials([
