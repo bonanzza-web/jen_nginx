@@ -1,5 +1,5 @@
 services:
   nginx-dev:
-    image: nexus.encaso.ru:8084/nginx-dev:latest
+    image: nexus.encaso.ru/nginx-dev:latest
     container_name: nginx-dev
     ports: "8060:80"
