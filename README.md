@@ -1,1 +1,1 @@
-# jen_nginx test repo for demo
+# jen_nginx test repo
